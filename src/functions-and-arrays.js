@@ -36,21 +36,25 @@ function sumNumbers(arr) {
 sumNumbers(numbers);
 
 // Iteration #3.1 Bonus:
+// let elementType = typeof arr[i];
+// if (elementType!==string && elementType!==boolean && elementType!==number) throw Error("")
+
+// return sum= (elementType===string)  ?   sum+arr[i].length :
+//             (elementType===boolean) ?   sum+arr[i]        : sum+arr[i];
+
 const mixedArr = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
 // // should return: 57
 function sum(arr) {
+  if (arr.length === 0) return 0;
+
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === 'true') {
-      return (sum += 'true'.length);
-    } else if (arr[i] === 'false') {
-      return (sum += 'false'.length);
-    } else if (typeof arr[i] === 'number') {
-      return (sum += arr[i]);
+    if (typeof arr[i] === 'object') {
+      throw Error("Unsupported data type sir or ma'am");
     } else if (typeof arr[i] === 'string') {
-      return (sum += arr[i].length);
-    } else if (typeof arr[i] === 'object' || typeof arr[i] === 'array') {
-      return 'Unvalid data type';
+      sum += arr[i].length;
+    } else {
+      sum += arr[i];
     }
   }
   return sum;
@@ -84,7 +88,13 @@ function averageWordLength(arr) {
 averageWordLength(wordsArr);
 
 // Bonus - Iteration #4.1
-function avg() {}
+const mixedArr2 = [6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10];
+// should return: 5.7
+function avg(arr) {
+  if (!arr.length) return null;
+  return Number((sum(arr) / arr.length).toFixed(2));
+}
+avg(mixedArr2);
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -126,7 +136,7 @@ function doesWordExist(arr, word) {
   return arr.includes(word);
 }
 
-console.log(doesWordExist(wordsFind, word));
+doesWordExist(wordsFind, word);
 
 // Iteration #7: Count repetition
 const wordsCount = [
@@ -157,7 +167,8 @@ function howManyTimes(arr, word) {
   return counter;
 }
 
-console.log(howManyTimes(wordsCount, word2));
+howManyTimes(wordsCount, word2);
+
 // Iteration #8: Bonus
 const matrix = [
   [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
